@@ -1,3 +1,4 @@
+@Display hexadecimal digits on 7-segment display.
 .equ A, 0x80
 .equ B, 0x40
 .equ C, 0x20

@@ -1,6 +1,6 @@
 @ Wirte the program to display:
 @   Stream of characters on LCD display left to right
-@   4 digital numerical calues  on LCD display right to left
+@   4 digital numerical values  on LCD display right to left
 
 MOV R0, #20 @R0 = X
 MOV R1, #7 @R1 = Y
