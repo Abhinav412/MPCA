@@ -1,6 +1,7 @@
 #include <SoftwareSerial.h>
-SoftwareSerial mySerial(3, 2);
-
+#define rxPIN 4
+#define txPIN 5
+SoftwareSerial mySerial = SoftwareSerial(rxPIN, txPIN);
 
 int pirsensor = 10;
 int buzzer = 12;
@@ -8,8 +9,10 @@ int redled = 13;
 
 void setup() {
   randomSeed(analogRead(0));
-  Serial.begin(9600);
- mySerial.begin(9600); // original 19200. while enter 9600 for sim900A
+  pinMode(rxPIN,INPUT);
+  pinMode(txPIN,OUTPUT);
+  //Serial.begin(9600);
+  mySerial.begin(9600); // original 19200. while enter 9600 for sim900A
   Serial.println(" logging time completed!");
   pinMode(pirsensor, INPUT);
   pinMode(buzzer, OUTPUT);
@@ -30,10 +33,10 @@ void loop() {
     digitalWrite(redled, HIGH);
    Serial.println("making call");
    
-    mySerial.println("IN"); //Once the handshake test is successful, i t will back to OK
+    mySerial.println("AT"); //Once the handshake test is successful, i t will back to OK
   updateSerial();
   
-  mySerial.println("IN+ +919886012299;"); //  change ZZ with country code and xxxxxxxxxxx with phone number to dial
+  mySerial.println("ATD+919886012299;"); //  change ZZ with country code and xxxxxxxxxxx with phone number to dial
   updateSerial();
   delay(20000); // wait for 20 seconds...
   mySerial.println("ATH"); //hang up
